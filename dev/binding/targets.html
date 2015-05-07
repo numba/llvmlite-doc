@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.3. Target information &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="4. llvmlite.binding – The LLVM binding layer" href="index.html"/>
+        <link rel="next" title="4.4. Modules" href="modules.html"/>
+        <link rel="prev" title="4.2. Dynamic libraries and symbols" href="dylib.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a> &raquo;</li>
+      
+    <li>4.3. Target information</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/binding/targets.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="target-information">
+<h1>4.3. Target information<a class="headerlink" href="#target-information" title="Permalink to this headline">¶</a></h1>
+<p>Target information allows you to inspect and modify aspects of the code
+generation, such as which CPU is targetted or what optimization level is
+desired.</p>
+<p>Minimal use of this module would be to create a <a class="reference internal" href="#llvmlite.binding.TargetMachine" title="llvmlite.binding.TargetMachine"><code class="xref py py-class docutils literal"><span class="pre">TargetMachine</span></code></a>
+for later use in code generation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">llvmlite</span> <span class="kn">import</span> <span class="n">binding</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">binding</span><span class="o">.</span><span class="n">Target</span><span class="o">.</span><span class="n">from_default_triple</span><span class="p">()</span>
+<span class="n">target_machine</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">create_target_machine</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="functions">
+<h2>4.3.1. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="llvmlite.binding.get_default_triple">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">get_default_triple</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.get_default_triple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default target triple LLVM is configured to produce code for,
+as a string.  This represents the host&#8217;s architecture and platform.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.get_host_cpu_name">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">get_host_cpu_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.get_host_cpu_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the name of the host&#8217;s CPU as a string.  You can use the
+return value with <a class="reference internal" href="#llvmlite.binding.Target.create_target_machine" title="llvmlite.binding.Target.create_target_machine"><code class="xref py py-meth docutils literal"><span class="pre">Target.create_target_machine()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.create_target_data">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">create_target_data</code><span class="sig-paren">(</span><em>data_layout</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.create_target_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="#llvmlite.binding.TargetData" title="llvmlite.binding.TargetData"><code class="xref py py-class docutils literal"><span class="pre">TargetData</span></code></a> representing the given <em>data_layout</em> (a
+string).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.create_target_library_info">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">create_target_library_info</code><span class="sig-paren">(</span><em>triple</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.create_target_library_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="#llvmlite.binding.TargetLibraryInfo" title="llvmlite.binding.TargetLibraryInfo"><code class="xref py py-class docutils literal"><span class="pre">TargetLibraryInfo</span></code></a> for the given <em>triple</em> string.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="classes">
+<h2>4.3.2. Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.binding.TargetData">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">TargetData</code><a class="headerlink" href="#llvmlite.binding.TargetData" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class providing functionality around a given data layout.  It
+specifies how the different types are to be represented in memory.
+Use <a class="reference internal" href="#llvmlite.binding.create_target_data" title="llvmlite.binding.create_target_data"><code class="xref py py-func docutils literal"><span class="pre">create_target_data()</span></code></a> to instantiate.</p>
+<dl class="method">
+<dt id="llvmlite.binding.TargetData.add_pass">
+<code class="descname">add_pass</code><span class="sig-paren">(</span><em>pm</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetData.add_pass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an optimization pass based on this data layout to the
+<a class="reference internal" href="passmanager.html#llvmlite.binding.PassManager" title="llvmlite.binding.PassManager"><code class="xref py py-class docutils literal"><span class="pre">PassManager</span></code></a> instance <em>pm</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetData.get_abi_size">
+<code class="descname">get_abi_size</code><span class="sig-paren">(</span><em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetData.get_abi_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ABI-mandated size of the LLVM <em>type</em> (as returned by
+<a class="reference internal" href="values.html#llvmlite.binding.ValueRef.type" title="llvmlite.binding.ValueRef.type"><code class="xref py py-attr docutils literal"><span class="pre">ValueRef.type</span></code></a>).  An integer is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetData.get_pointee_abi_size">
+<code class="descname">get_pointee_abi_size</code><span class="sig-paren">(</span><em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetData.get_pointee_abi_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to <a class="reference internal" href="#llvmlite.binding.TargetData.get_abi_size" title="llvmlite.binding.TargetData.get_abi_size"><code class="xref py py-meth docutils literal"><span class="pre">get_abi_size()</span></code></a>, but assumes <em>type</em> is a LLVM
+pointer type, and returns the ABI-mandated size of the type pointed
+to by.  This is useful for global variables (whose type is really
+a pointer to the declared type).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetData.get_pointee_abi_alignment">
+<code class="descname">get_pointee_abi_alignment</code><span class="sig-paren">(</span><em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetData.get_pointee_abi_alignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to <a class="reference internal" href="#llvmlite.binding.TargetData.get_pointee_abi_size" title="llvmlite.binding.TargetData.get_pointee_abi_size"><code class="xref py py-meth docutils literal"><span class="pre">get_pointee_abi_size()</span></code></a>, but return the ABI-mandated
+alignment rather than the ABI size.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.binding.Target">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">Target</code><a class="headerlink" href="#llvmlite.binding.Target" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class representing a compilation target.  The following factories
+are provided:</p>
+<dl class="classmethod">
+<dt id="llvmlite.binding.Target.from_triple">
+<em class="property">classmethod </em><code class="descname">from_triple</code><span class="sig-paren">(</span><em>triple</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.Target.from_triple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new <a class="reference internal" href="#llvmlite.binding.Target" title="llvmlite.binding.Target"><code class="xref py py-class docutils literal"><span class="pre">Target</span></code></a> instance for the given <em>triple</em> string
+denoting the target platform.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="llvmlite.binding.Target.from_default_triple">
+<em class="property">classmethod </em><code class="descname">from_default_triple</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.Target.from_default_triple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new <a class="reference internal" href="#llvmlite.binding.Target" title="llvmlite.binding.Target"><code class="xref py py-class docutils literal"><span class="pre">Target</span></code></a> instance for the default platform
+LLVM is configured to produce code for.  This is equivalent to
+calling <code class="docutils literal"><span class="pre">Target.from_triple(get_default_triple())</span></code></p>
+</dd></dl>
+
+<p>The following methods and attributes are available:</p>
+<dl class="attribute">
+<dt id="llvmlite.binding.Target.description">
+<code class="descname">description</code><a class="headerlink" href="#llvmlite.binding.Target.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>A description of the target.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.Target.name">
+<code class="descname">name</code><a class="headerlink" href="#llvmlite.binding.Target.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the target.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.Target.triple">
+<code class="descname">triple</code><a class="headerlink" href="#llvmlite.binding.Target.triple" title="Permalink to this definition">¶</a></dt>
+<dd><p>The triple (a string) uniquely identifying the target, for
+example <code class="docutils literal"><span class="pre">&quot;x86_64-pc-linux-gnu&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.Target.create_target_machine">
+<code class="descname">create_target_machine</code><span class="sig-paren">(</span><em>cpu=''</em>, <em>features=''</em>, <em>opt=2</em>, <em>reloc='default'</em>, <em>codemodel='jitdefault'</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.Target.create_target_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new <a class="reference internal" href="#llvmlite.binding.TargetMachine" title="llvmlite.binding.TargetMachine"><code class="xref py py-class docutils literal"><span class="pre">TargetMachine</span></code></a> instance for this target
+and with the given options.  <em>cpu</em> is an optional CPU name to
+specialize for.  <em>features</em> is a comma-separated list of target-specific
+features to enable or disable.  <em>opt</em> is the optimization level,
+from 0 to 3.  <em>reloc</em> is the relocation model.  <em>codemodel</em> is
+the code model.  The defaults for <em>reloc</em> and <em>codemodel</em> are
+appropriate for JIT compilation.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To list the available CPUs and features for a target,
+execute <code class="docutils literal"><span class="pre">llc</span> <span class="pre">-mcpu=help</span></code> on the command line.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.binding.TargetMachine">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">TargetMachine</code><a class="headerlink" href="#llvmlite.binding.TargetMachine" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class holding all the settings necessary for proper code generation
+(including target information and compiler options).  Instantiate
+using <a class="reference internal" href="#llvmlite.binding.Target.create_target_machine" title="llvmlite.binding.Target.create_target_machine"><code class="xref py py-meth docutils literal"><span class="pre">Target.create_target_machine()</span></code></a>.</p>
+<dl class="method">
+<dt id="llvmlite.binding.TargetMachine.add_analysis_passes">
+<code class="descname">add_analysis_passes</code><span class="sig-paren">(</span><em>pm</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetMachine.add_analysis_passes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register analysis passes for this target machine with the
+<a class="reference internal" href="passmanager.html#llvmlite.binding.PassManager" title="llvmlite.binding.PassManager"><code class="xref py py-class docutils literal"><span class="pre">PassManager</span></code></a> instance <em>pm</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetMachine.emit_object">
+<code class="descname">emit_object</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetMachine.emit_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent the compiled <em>module</em> (a <a class="reference internal" href="modules.html#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> instance) as
+a code object, suitable for use with the platform&#8217;s linker.
+A bytestring is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetMachine.emit_assembly">
+<code class="descname">emit_assembly</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetMachine.emit_assembly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the compiled <em>module</em>&#8216;s native assembler, as a string.</p>
+<p><a class="reference internal" href="initfini.html#llvmlite.binding.initialize_native_asmprinter" title="llvmlite.binding.initialize_native_asmprinter"><code class="xref py py-func docutils literal"><span class="pre">initialize_native_asmprinter()</span></code></a> must have been called first.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.TargetMachine.target_data">
+<code class="descname">target_data</code><a class="headerlink" href="#llvmlite.binding.TargetMachine.target_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#llvmlite.binding.TargetData" title="llvmlite.binding.TargetData"><code class="xref py py-class docutils literal"><span class="pre">TargetData</span></code></a> associated with this target machine.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.binding.TargetLibraryInfo">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">TargetLibraryInfo</code><a class="headerlink" href="#llvmlite.binding.TargetLibraryInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides information about what library functions are
+available for the current target.  Instantiate using
+<a class="reference internal" href="#llvmlite.binding.create_target_library_info" title="llvmlite.binding.create_target_library_info"><code class="xref py py-func docutils literal"><span class="pre">create_target_library_info()</span></code></a>.</p>
+<dl class="method">
+<dt id="llvmlite.binding.TargetLibraryInfo.add_pass">
+<code class="descname">add_pass</code><span class="sig-paren">(</span><em>pm</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetLibraryInfo.add_pass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an optimization pass based on this library info to the
+<a class="reference internal" href="passmanager.html#llvmlite.binding.PassManager" title="llvmlite.binding.PassManager"><code class="xref py py-class docutils literal"><span class="pre">PassManager</span></code></a> instance <em>pm</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetLibraryInfo.disable_all">
+<code class="descname">disable_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetLibraryInfo.disable_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable all &#8220;builtin&#8221; functions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetLibraryInfo.get_libfunc">
+<code class="descname">get_libfunc</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetLibraryInfo.get_libfunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the library function <em>name</em>.  <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NameError" title="(in Python v3.4)"><code class="xref py py-exc docutils literal"><span class="pre">NameError</span></code></a> is raised if
+not found.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.TargetLibraryInfo.set_unavailable">
+<code class="descname">set_unavailable</code><span class="sig-paren">(</span><em>libfunc</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.TargetLibraryInfo.set_unavailable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the library function <em>libfunc</em> (as returned by <a class="reference internal" href="#llvmlite.binding.TargetLibraryInfo.get_libfunc" title="llvmlite.binding.TargetLibraryInfo.get_libfunc"><code class="xref py py-meth docutils literal"><span class="pre">get_libfunc()</span></code></a>)
+unavailable.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="4.4. Modules" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dylib.html" class="btn btn-neutral" title="4.2. Dynamic libraries and symbols" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

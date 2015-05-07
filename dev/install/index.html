@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Installing &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="next" title="3. llvmlite.ir – The IR layer" href="../ir/index.html"/>
+        <link rel="prev" title="1. Introduction" href="../intro/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>2. Installing</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/install/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="installing">
+<h1>2. Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pre-built-binaries">
+<h2>2.1. Pre-built binaries<a class="headerlink" href="#pre-built-binaries" title="Permalink to this headline">¶</a></h2>
+<p>For your own convenience, we recommend you install the pre-built binaries
+provided for the <a class="reference external" href="http://conda.pydata.org/">Conda</a> package manager.  Official binaries are available
+in the <a class="reference external" href="http://docs.continuum.io/anaconda/index.html">Anaconda</a> distribution; to install them, simply type:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ conda install llvmlite
+</pre></div>
+</div>
+<p>If you want a more recent version, you can also fetch the automatic builds
+available on <a class="reference external" href="http://numba.pydata.org/">Numba</a>&#8216;s <a class="reference external" href="https://binstar.org/numba">binstar channel</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ conda install --channel numba llvmlite
+</pre></div>
+</div>
+<p>If don&#8217;t want to use Conda, or modified llvmlite yourself, you will need
+to build it.</p>
+</div>
+<div class="section" id="building-manually">
+<h2>2.2. Building manually<a class="headerlink" href="#building-manually" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prerequisites-unix">
+<h3>2.2.1. Prerequisites (UNIX)<a class="headerlink" href="#prerequisites-unix" title="Permalink to this headline">¶</a></h3>
+<p>You must have a LLVM 3.5 build (libraries and header files) available
+somewhere.</p>
+<p>Under Ubuntu 14.10 and Debian, you can install the <code class="docutils literal"><span class="pre">llvm-3.5-dev</span></code>
+package.  LLVM packages shipped with some earlier distributions such as
+Ubuntu 14.04 are known to be broken.</p>
+<p>If building on Ubuntu, the linker may report an error if the development
+version of <code class="docutils literal"><span class="pre">libedit</span></code> is not installed. Install <code class="docutils literal"><span class="pre">libedit-dev</span></code> if you
+run into this problem.</p>
+</div>
+<div class="section" id="prerequisites-windows">
+<h3>2.2.2. Prerequisites (Windows)<a class="headerlink" href="#prerequisites-windows" title="Permalink to this headline">¶</a></h3>
+<p>You must have Visual Studio 2012 or later (the free &#8220;Express&#8221; edition is ok)
+in order to compile LLVM and llvmlite.  In addition, you must have <a class="reference external" href="http://www.cmake.org/">cmake</a>
+installed, and LLVM should have been built using cmake, in Release mode.
+Be careful to use the right bitness (32- or 64-bit) for your Python
+installation.</p>
+</div>
+<div class="section" id="compiling">
+<h3>2.2.3. Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h3>
+<p>Run <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code>.  This builds the llvmlite C wrapper,
+which embeds a statically-linked copy of the required subset of LLVM.</p>
+<p>If your LLVM is installed in a non-standard location, first point the
+<code class="docutils literal"><span class="pre">LLVM_CONFIG</span></code> environment variable to the path of the corresponding
+<code class="docutils literal"><span class="pre">llvm-config</span></code> (or <code class="docutils literal"><span class="pre">llvm-config.exe</span></code>) executable.</p>
+</div>
+<div class="section" id="id1">
+<h3>2.2.4. Installing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Validate your build by running the test suite: run <code class="docutils literal"><span class="pre">python</span> <span class="pre">runtests.py</span></code>
+or <code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">llvmlite.tests</span></code>.  If everything works fine, install using
+<code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ir/index.html" class="btn btn-neutral float-right" title="3. llvmlite.ir – The IR layer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../intro/index.html" class="btn btn-neutral" title="1. Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Glossary &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="index.html"/>
+        <link rel="prev" title="5. Contributing" href="developer/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>6. Glossary</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/glossary.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="glossary">
+<h1>6. Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<dl class="glossary docutils">
+<dt id="term-basic-block">basic block</dt>
+<dd>A sequence of instructions inside a function.  A basic block always
+starts with a <a class="reference internal" href="#term-label"><span class="xref std std-term">label</span></a> and ends with a <a class="reference internal" href="#term-terminator"><span class="xref std std-term">terminator</span></a>.
+No other instruction inside the basic block can transfer control out
+of the block.</dd>
+<dt id="term-function-declaration">function declaration</dt>
+<dd>The specification of a function&#8217;s prototype (including the argument
+and return types, and other information such as the calling
+convention), without an associated implementation.  This is like
+a <code class="docutils literal"><span class="pre">extern</span></code> function declaration in C.</dd>
+<dt id="term-function-definition">function definition</dt>
+<dd>A function&#8217;s prototype (like in a <a class="reference internal" href="#term-function-declaration"><span class="xref std std-term">function declaration</span></a>)
+plus a body implementing the function.</dd>
+<dt id="term-getelementptr">getelementptr</dt>
+<dd><p class="first">A LLVM <a class="reference internal" href="#term-instruction"><span class="xref std std-term">instruction</span></a> allowing to get the address of a subelement
+of an aggregate data structure.</p>
+<div class="last admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Official documentation: <a class="reference external" href="http://llvm.org/releases/3.5.1/docs/LangRef.html#i-getelementptr" title="(in LLVM v3.5)"><span>&#8216;getelementptr&#8217; Instruction</span></a></p>
+</div>
+</dd>
+<dt id="term-global-value">global value</dt>
+<dd>A named value accessible to all members of a module.</dd>
+<dt id="term-global-variable">global variable</dt>
+<dd><p class="first">A variable whose value is accessible to all members of a module.
+Under the hood, it is a constant pointer to a module-allocated
+slot of the given type.</p>
+<p class="last">All global variables are global values.  However, the converse is
+not true: a function declaration or definition is not a global
+variable; it is only a <a class="reference internal" href="#term-global-value"><span class="xref std std-term">global value</span></a>.</p>
+</dd>
+<dt id="term-instruction">instruction</dt>
+<dd>The fundamental element(s) used in implementing a LLVM function.
+LLVM instructions define a procedural assembly-like language.</dd>
+<dt id="term-ir"><span id="term-intermediate-representation"></span>IR<br />Intermediate Representation</dt>
+<dd>A high-level assembly language describing to LLVM the code to be
+compiled to native code.</dd>
+<dt id="term-label">label</dt>
+<dd>A branch target inside a function.  A label always denotes the start
+of a <a class="reference internal" href="#term-basic-block"><span class="xref std std-term">basic block</span></a>.</dd>
+<dt id="term-metadata">metadata</dt>
+<dd>Optional ancillary information which can be associated with LLVM
+instructions, functions, etc.  Metadata is used to convey certain
+information which is not critical to the compiling of LLVM <a class="reference internal" href="#term-ir"><span class="xref std std-term">IR</span></a>
+(such as the likelihood of a condition branch or the source code
+location corresponding to a given instruction).</dd>
+<dt id="term-module">module</dt>
+<dd>A compilation unit for LLVM <a class="reference internal" href="#term-ir"><span class="xref std std-term">IR</span></a>.  A module can contain any
+number of function declarations and definitions, global variables,
+and metadata.</dd>
+<dt id="term-terminator"><span id="term-terminator-instruction"></span>terminator<br />terminator instruction</dt>
+<dd>A kind of <a class="reference internal" href="#term-instruction"><span class="xref std std-term">instruction</span></a> which explicitly transfers control
+to another part of the program (instead of simply going to the next
+instruction after it is executed).  Examples are branches and
+function returns.</dd>
+</dl>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="developer/index.html" class="btn btn-neutral" title="5. Contributing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

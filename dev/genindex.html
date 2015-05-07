@@ -1,0 +1,1395 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Index &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li></li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.add">add() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/values.html#llvmlite.ir.NamedMetaData.add">(llvmlite.ir.NamedMetaData method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetMachine.add_analysis_passes">add_analysis_passes() (llvmlite.binding.TargetMachine method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Argument.add_attribute">add_attribute() (llvmlite.ir.Argument method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.SwitchInstr.add_case">add_case() (llvmlite.ir.SwitchInstr method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.add_global">add_global() (llvmlite.ir.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.PhiInstr.add_incoming">add_incoming() (llvmlite.ir.PhiInstr method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.add_metadata">add_metadata() (llvmlite.ir.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.ExecutionEngine.add_module">add_module() (llvmlite.binding.ExecutionEngine method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.add_named_metadata">add_named_metadata() (llvmlite.ir.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetData.add_pass">add_pass() (llvmlite.binding.TargetData method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetLibraryInfo.add_pass">(llvmlite.binding.TargetLibraryInfo method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/dylib.html#llvmlite.binding.add_symbol">add_symbol() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/dylib.html#llvmlite.binding.address_of_symbol">address_of_symbol() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.PointerType.addrspace">addrspace (llvmlite.ir.PointerType attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.addrspacecast">addrspacecast() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.Aggregate">Aggregate (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.alloca">alloca() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.and_">and_() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Function.append_basic_block">append_basic_block() (llvmlite.ir.Function method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.append_basic_block">(llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Function.args">args (llvmlite.ir.Function attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Argument">Argument (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.ArrayType">ArrayType (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.as_bitcode">as_bitcode() (llvmlite.binding.ModuleRef method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.Type.as_pointer">as_pointer() (llvmlite.ir.Type method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.ashr">ashr() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.atomic_rmw">atomic_rmw() (in module llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Function.attributes">attributes (llvmlite.ir.Function attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="glossary.html#term-basic-block"><strong>basic block</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.bitcast">bitcast() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Block">Block (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.block">block (llvmlite.ir.IRBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.branch">branch() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.call">call() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Function.calling_convention">calling_convention (llvmlite.ir.Function attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.cbranch">cbranch() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.cmpxchg">cmpxchg() (in module llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Constant">Constant (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.create_jit_compiler_with_tm">create_jit_compiler_with_tm() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.create_mcjit_compiler">create_mcjit_compiler() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.create_target_data">create_target_data() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.create_target_library_info">create_target_library_info() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.Target.create_target_machine">create_target_machine() (llvmlite.binding.Target method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.data_layout">data_layout (llvmlite.binding.ModuleRef attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.data_layout">(llvmlite.ir.Module attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.Target.description">description (llvmlite.binding.Target attribute)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetLibraryInfo.disable_all">disable_all() (llvmlite.binding.TargetLibraryInfo method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.disable_unroll_loops">disable_unroll_loops (llvmlite.binding.PassManagerBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.DoubleType">DoubleType (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/types.html#llvmlite.ir.Aggregate.elements">elements (llvmlite.ir.Aggregate attribute)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetMachine.emit_assembly">emit_assembly() (llvmlite.binding.TargetMachine method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetMachine.emit_object">emit_object() (llvmlite.binding.TargetMachine method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.ExecutionEngine">ExecutionEngine (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.extract_value">extract_value() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fadd">fadd() (llvmlite.ir.IRBuilder method)</a>, <a href="ir/builder.html#llvmlite.ir.IRBuilder.fadd">[1]</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fcmp_ordered">fcmp_ordered() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fcmp_unordered">fcmp_unordered() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fdiv">fdiv() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.FunctionPassManager.finalize">finalize() (llvmlite.binding.FunctionPassManager method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.ExecutionEngine.finalize_object">finalize_object() (llvmlite.binding.ExecutionEngine method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.FloatType">FloatType (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fmul">fmul() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fpext">fpext() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fptosi">fptosi() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fptoui">fptoui() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.fptrunc">fptrunc() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.frem">frem() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.Target.from_default_triple">from_default_triple() (llvmlite.binding.Target class method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.Target.from_triple">from_triple() (llvmlite.binding.Target class method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Function">Function (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Block.function">function (llvmlite.ir.Block attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.function">(llvmlite.ir.IRBuilder attribute)</a>
+  </dt>
+
+        
+  <dt><a href="ir/values.html#llvmlite.ir.Instruction.function">(llvmlite.ir.Instruction attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="glossary.html#term-function-declaration"><strong>function declaration</strong></a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-function-definition"><strong>function definition</strong></a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.FunctionPassManager">FunctionPassManager (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.functions">functions (llvmlite.binding.ModuleRef attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.functions">(llvmlite.ir.Module attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="ir/types.html#llvmlite.ir.FunctionType">FunctionType (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.gep">gep() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.Type.get_abi_alignment">get_abi_alignment() (llvmlite.ir.Type method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetData.get_abi_size">get_abi_size() (llvmlite.binding.TargetData method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/types.html#llvmlite.ir.Type.get_abi_size">(llvmlite.ir.Type method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.get_default_triple">get_default_triple() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.get_function">get_function() (llvmlite.binding.ModuleRef method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.get_global">get_global() (llvmlite.ir.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.get_global_variable">get_global_variable() (llvmlite.binding.ModuleRef method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.get_host_cpu_name">get_host_cpu_name() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetLibraryInfo.get_libfunc">get_libfunc() (llvmlite.binding.TargetLibraryInfo method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.get_named_metadata">get_named_metadata() (llvmlite.ir.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetData.get_pointee_abi_alignment">get_pointee_abi_alignment() (llvmlite.binding.TargetData method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetData.get_pointee_abi_size">get_pointee_abi_size() (llvmlite.binding.TargetData method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.ExecutionEngine.get_pointer_to_global">get_pointer_to_global() (llvmlite.binding.ExecutionEngine method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.get_unique_name">get_unique_name() (llvmlite.ir.Module method)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-getelementptr"><strong>getelementptr</strong></a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-global-value"><strong>global value</strong></a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-global-variable"><strong>global variable</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.GlobalVariable.global_constant">global_constant (llvmlite.ir.GlobalVariable attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.global_values">global_values (llvmlite.ir.Module attribute)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.global_variables">global_variables (llvmlite.binding.ModuleRef attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.GlobalValue">GlobalValue (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.GlobalVariable">GlobalVariable (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.goto_block">goto_block() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.goto_entry_block">goto_entry_block() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.icmp_signed">icmp_signed() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.icmp_unsigned">icmp_unsigned() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.if_else">if_else() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.if_then">if_then() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/initfini.html#llvmlite.binding.initialize">initialize() (in module llvmlite.binding)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="binding/passmanager.html#llvmlite.binding.FunctionPassManager.initialize">(llvmlite.binding.FunctionPassManager method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/initfini.html#llvmlite.binding.initialize_native_asmprinter">initialize_native_asmprinter() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/initfini.html#llvmlite.binding.initialize_native_target">initialize_native_target() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.GlobalVariable.initializer">initializer (llvmlite.ir.GlobalVariable attribute)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.inlining_threshold">inlining_threshold (llvmlite.binding.PassManagerBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Function.insert_basic_block">insert_basic_block() (llvmlite.ir.Function method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.insert_value">insert_value() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-instruction"><strong>instruction</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Instruction">Instruction (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-intermediate-representation"><strong>Intermediate Representation</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.inttoptr">inttoptr() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.IntType">IntType (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-ir"><strong>IR</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder">IRBuilder (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.ValueRef.is_declaration">is_declaration (llvmlite.binding.ValueRef attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/values.html#llvmlite.ir.Function.is_declaration">(llvmlite.ir.Function attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Block.is_terminated">is_terminated (llvmlite.ir.Block attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="glossary.html#term-label"><strong>label</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.LabelType">LabelType (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.link_in">link_in() (llvmlite.binding.ModuleRef method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage">Linkage (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.ValueRef.linkage">linkage (llvmlite.binding.ValueRef attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/values.html#llvmlite.ir.GlobalValue.linkage">(llvmlite.ir.GlobalValue attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.appending">Linkage.appending (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.available_externally">Linkage.available_externally (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.common">Linkage.common (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.dllexport">Linkage.dllexport (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.dllimport">Linkage.dllimport (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.external">Linkage.external (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.external_weak">Linkage.external_weak (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.ghost">Linkage.ghost (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.internal">Linkage.internal (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.linker_private">Linkage.linker_private (in module llvmlite.binding)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.linker_private_weak">Linkage.linker_private_weak (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.linkonce_any">Linkage.linkonce_any (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.linkonce_odr">Linkage.linkonce_odr (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.linkonce_odr_autohide">Linkage.linkonce_odr_autohide (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.private">Linkage.private (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.weak_any">Linkage.weak_any (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.Linkage.weak_odr">Linkage.weak_odr (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Constant.literal_struct">literal_struct() (llvmlite.ir.Constant class method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.LiteralStructType">LiteralStructType (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/index.html#module-llvmlite.binding">llvmlite.binding (module)</a>
+  </dt>
+
+      
+  <dt><a href="ir/index.html#module-llvmlite.ir">llvmlite.ir (module)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.load">load() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/dylib.html#llvmlite.binding.load_library_permanently">load_library_permanently() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.loop_vectorize">loop_vectorize (llvmlite.binding.PassManagerBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.lshr">lshr() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/values.html#llvmlite.ir.MDValue">MDValue (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-metadata"><strong>metadata</strong></a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.MetaData">MetaData (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.MetaDataString">MetaDataString (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-module"><strong>module</strong></a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/modules.html#llvmlite.ir.Module">Module (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.ValueRef.module">module (llvmlite.binding.ValueRef attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.module">(llvmlite.ir.IRBuilder attribute)</a>
+  </dt>
+
+        
+  <dt><a href="ir/values.html#llvmlite.ir.Instruction.module">(llvmlite.ir.Instruction attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.ModulePassManager">ModulePassManager (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef">ModuleRef (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.mul">mul() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.Target.name">name (llvmlite.binding.Target attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="binding/values.html#llvmlite.binding.ValueRef.name">(llvmlite.binding.ValueRef attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="ir/values.html#llvmlite.ir.NamedMetaData">NamedMetaData (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.neg">neg() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.not_">not_() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.opt_level">opt_level (llvmlite.binding.PassManagerBuilder attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.or_">or_() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.parse_assembly">parse_assembly() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.parse_bitcode">parse_bitcode() (in module llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManager">PassManager (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder">PassManagerBuilder (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.phi">phi() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.PhiInstr">PhiInstr (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.PointerType.pointee">pointee (llvmlite.ir.PointerType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.PointerType">PointerType (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.populate">populate() (llvmlite.binding.PassManagerBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.position_after">position_after() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.position_at_end">position_at_end() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.position_at_start">position_at_start() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.position_before">position_before() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.PredictableInstr">PredictableInstr (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.ptrtoint">ptrtoint() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt>
+    Python Enhancement Proposals
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="developer/index.html#index-1">PEP 7</a>
+  </dt>
+
+        
+  <dt><a href="developer/index.html#index-0">PEP 8</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.ExecutionEngine.remove_module">remove_module() (llvmlite.binding.ExecutionEngine method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Block.replace">replace() (llvmlite.ir.Block method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.ret">ret() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.ret_void">ret_void() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.FunctionPassManager.run">run() (llvmlite.binding.FunctionPassManager method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="binding/passmanager.html#llvmlite.binding.ModulePassManager.run">(llvmlite.binding.ModulePassManager method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.sdiv">sdiv() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.select">select() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Instruction.set_metadata">set_metadata() (llvmlite.ir.Instruction method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetLibraryInfo.set_unavailable">set_unavailable() (llvmlite.binding.TargetLibraryInfo method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.PredictableInstr.set_weights">set_weights() (llvmlite.ir.PredictableInstr method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.sext">sext() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.shl">shl() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/initfini.html#llvmlite.binding.shutdown">shutdown() (in module llvmlite.binding)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.sitofp">sitofp() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.size_level">size_level (llvmlite.binding.PassManagerBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="binding/passmanager.html#llvmlite.binding.PassManagerBuilder.slp_vectorize">slp_vectorize (llvmlite.binding.PassManagerBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.srem">srem() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.store">store() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.sub">sub() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.switch">switch() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.SwitchInstr">SwitchInstr (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.Target">Target (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/engine.html#llvmlite.binding.ExecutionEngine.target_data">target_data (llvmlite.binding.ExecutionEngine attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetMachine.target_data">(llvmlite.binding.TargetMachine attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetData">TargetData (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetLibraryInfo">TargetLibraryInfo (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="binding/targets.html#llvmlite.binding.TargetMachine">TargetMachine (class in llvmlite.binding)</a>
+  </dt>
+
+      
+  <dt><a href="glossary.html#term-terminator"><strong>terminator</strong></a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="ir/values.html#llvmlite.ir.Block.terminator">(llvmlite.ir.Block attribute)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="glossary.html#term-terminator-instruction"><strong>terminator instruction</strong></a>
+  </dt>
+
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.triple">triple (llvmlite.binding.ModuleRef attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="binding/targets.html#llvmlite.binding.Target.triple">(llvmlite.binding.Target attribute)</a>
+  </dt>
+
+        
+  <dt><a href="ir/modules.html#llvmlite.ir.Module.triple">(llvmlite.ir.Module attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.trunc">trunc() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.Type">Type (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.ValueRef.type">type (llvmlite.binding.ValueRef attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.udiv">udiv() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.uitofp">uitofp() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Undefined">Undefined (in module llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.unreachable">unreachable() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.urem">urem() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/values.html#llvmlite.ir.Value">Value (class in llvmlite.ir)</a>
+  </dt>
+
+      
+  <dt><a href="binding/values.html#llvmlite.binding.ValueRef">ValueRef (class in llvmlite.binding)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="binding/modules.html#llvmlite.binding.ModuleRef.verify">verify() (llvmlite.binding.ModuleRef method)</a>
+  </dt>
+
+      
+  <dt><a href="ir/types.html#llvmlite.ir.VoidType">VoidType (class in llvmlite.ir)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.xor">xor() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="ir/builder.html#llvmlite.ir.IRBuilder.zext">zext() (llvmlite.ir.IRBuilder method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

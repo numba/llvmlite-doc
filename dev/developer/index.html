@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Contributing &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="next" title="6. Glossary" href="../glossary.html"/>
+        <link rel="prev" title="4.8. Examples" href="../binding/examples.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>5. Contributing</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developer/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="contributing">
+<h1>5. Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>llvmlite originated to fulfill the needs of the <a class="reference external" href="http://numba.pydata.org/">Numba</a> project.  It is
+still mostly maintained by the <a class="reference external" href="http://numba.pydata.org/">Numba</a> team.  As such, we tend to prioritize
+the needs and constraints of <a class="reference external" href="http://numba.pydata.org/">Numba</a> over other conflicting desires.
+However, we welcome any contributions, under the form of
+<a class="reference internal" href="#report-bugs"><span>bug reports</span></a> or <a class="reference internal" href="#pull-requests"><span>pull requests</span></a>.</p>
+<div class="section" id="communication">
+<h2>5.1. Communication<a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mailing-list">
+<h3>5.1.1. Mailing-list<a class="headerlink" href="#mailing-list" title="Permalink to this headline">¶</a></h3>
+<p>For now, we use the <a class="reference external" href="http://numba.pydata.org/">Numba</a> public mailing-list, which you can e-mail at
+<a class="reference external" href="mailto:numba-users&#37;&#52;&#48;continuum&#46;io">numba-users<span>&#64;</span>continuum<span>&#46;</span>io</a>.  If you have any questions about contributing to
+llvmlite, it is ok to ask them on this mailing-list.  You can subscribe
+and read the archives on
+<a class="reference external" href="https://groups.google.com/a/continuum.io/forum/#!forum/numba-users">Google Groups</a>,
+and there is also a <a class="reference external" href="http://news.gmane.org/gmane.comp.python.numba.user">Gmane mirror</a>
+allowing NNTP access.</p>
+</div>
+<div class="section" id="bug-tracker">
+<span id="report-bugs"></span><h3>5.1.2. Bug tracker<a class="headerlink" href="#bug-tracker" title="Permalink to this headline">¶</a></h3>
+<p>We use the <a class="reference external" href="https://github.com/numba/llvmlite/issues">Github issue tracker</a>
+to track both bug reports and feature requests.  If you report an issue,
+please include specifics:</p>
+<ul class="simple">
+<li>what you are trying to do;</li>
+<li>which operating system you have and which version of llvmlite you are running;</li>
+<li>how llvmlite is misbehaving, e.g. the full error traceback, or the unexpected
+results you are getting;</li>
+<li>as far as possible, a code snippet that allows full reproduction of your
+problem.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="pull-requests">
+<span id="id1"></span><h2>5.2. Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>If you want to contribute code, we recommend you fork our <a class="reference external" href="https://github.com/numba/llvmlite">Github repository</a>, then create a branch representing
+your work.  When your work is ready, you should submit it as a pull
+request from the Github interface.</p>
+</div>
+<div class="section" id="development-rules">
+<h2>5.3. Development rules<a class="headerlink" href="#development-rules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="coding-conventions">
+<h3>5.3.1. Coding conventions<a class="headerlink" href="#coding-conventions" title="Permalink to this headline">¶</a></h3>
+<p>All Python code should follow <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a>.  Our C++ code doesn&#8217;t have a
+well-defined coding style (would it be nice to follow <span class="target" id="index-1"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0007"><strong>PEP 7</strong></a>?).
+Code and documentation should generally fit within 80 columns, for
+maximum readability with all existing tools (such as code review UIs).</p>
+</div>
+<div class="section" id="platform-support">
+<h3>5.3.2. Platform support<a class="headerlink" href="#platform-support" title="Permalink to this headline">¶</a></h3>
+<p>llvmlite is to be kept compatible with Python 2.6, 2.7, 3.3 and 3.4 under
+at least Linux, OS X and Windows.  It only needs to be compatible with
+the currently supported LLVM version (currently, the 3.5 series).</p>
+<p>We don&#8217;t expect contributors to test their code on all platforms.  Pull
+requests are automatically built and tested using
+<a class="reference external" href="https://travis-ci.org/numba/llvmlite">Travis-CI</a>.  This takes care of
+Linux compatibility.  Over operating systems are tested on an internal
+continuous integration platform at Continuum Analytics.</p>
+</div>
+</div>
+<div class="section" id="documentation">
+<h2>5.4. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>This documentation is maintained in the <code class="docutils literal"><span class="pre">docs</span></code> directory inside the
+<a class="reference external" href="https://github.com/numba/llvmlite">llvmlite repository</a>.  It is
+built using Sphinx.</p>
+<p>You can edit the source files under <code class="docutils literal"><span class="pre">docs/source/</span></code>, after which you can
+build and check the documentation:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ make html
+$ open _build/html/index.html
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../glossary.html" class="btn btn-neutral float-right" title="6. Glossary" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../binding/examples.html" class="btn btn-neutral" title="4.8. Examples" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

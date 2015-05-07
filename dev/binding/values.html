@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.5. Value references &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="4. llvmlite.binding – The LLVM binding layer" href="index.html"/>
+        <link rel="next" title="4.6. Execution engine" href="engine.html"/>
+        <link rel="prev" title="4.4. Modules" href="modules.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">4.4. Modules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a> &raquo;</li>
+      
+    <li>4.5. Value references</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/binding/values.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="value-references">
+<h1>4.5. Value references<a class="headerlink" href="#value-references" title="Permalink to this headline">¶</a></h1>
+<p>A value reference is a wrapper around a LLVM value for you to inspect.
+You can&#8217;t create one yourself; instead, you&#8217;ll get them from methods
+of the <a class="reference internal" href="modules.html#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> class.</p>
+<div class="section" id="enumerations">
+<h2>4.5.1. Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.binding.Linkage">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">Linkage</code><a class="headerlink" href="#llvmlite.binding.Linkage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The different linkage types allowed for global values.  The following
+values are provided:</p>
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.external">
+<code class="descname">external</code><a class="headerlink" href="#llvmlite.binding.Linkage.external" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.available_externally">
+<code class="descname">available_externally</code><a class="headerlink" href="#llvmlite.binding.Linkage.available_externally" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.linkonce_any">
+<code class="descname">linkonce_any</code><a class="headerlink" href="#llvmlite.binding.Linkage.linkonce_any" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.linkonce_odr">
+<code class="descname">linkonce_odr</code><a class="headerlink" href="#llvmlite.binding.Linkage.linkonce_odr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.linkonce_odr_autohide">
+<code class="descname">linkonce_odr_autohide</code><a class="headerlink" href="#llvmlite.binding.Linkage.linkonce_odr_autohide" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.weak_any">
+<code class="descname">weak_any</code><a class="headerlink" href="#llvmlite.binding.Linkage.weak_any" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.weak_odr">
+<code class="descname">weak_odr</code><a class="headerlink" href="#llvmlite.binding.Linkage.weak_odr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.appending">
+<code class="descname">appending</code><a class="headerlink" href="#llvmlite.binding.Linkage.appending" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.internal">
+<code class="descname">internal</code><a class="headerlink" href="#llvmlite.binding.Linkage.internal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.private">
+<code class="descname">private</code><a class="headerlink" href="#llvmlite.binding.Linkage.private" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.dllimport">
+<code class="descname">dllimport</code><a class="headerlink" href="#llvmlite.binding.Linkage.dllimport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.dllexport">
+<code class="descname">dllexport</code><a class="headerlink" href="#llvmlite.binding.Linkage.dllexport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.external_weak">
+<code class="descname">external_weak</code><a class="headerlink" href="#llvmlite.binding.Linkage.external_weak" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.ghost">
+<code class="descname">ghost</code><a class="headerlink" href="#llvmlite.binding.Linkage.ghost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.common">
+<code class="descname">common</code><a class="headerlink" href="#llvmlite.binding.Linkage.common" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.linker_private">
+<code class="descname">linker_private</code><a class="headerlink" href="#llvmlite.binding.Linkage.linker_private" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="llvmlite.binding.Linkage.linker_private_weak">
+<code class="descname">linker_private_weak</code><a class="headerlink" href="#llvmlite.binding.Linkage.linker_private_weak" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-valueref-class">
+<h2>4.5.2. The ValueRef class<a class="headerlink" href="#the-valueref-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.binding.ValueRef">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">ValueRef</code><a class="headerlink" href="#llvmlite.binding.ValueRef" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper around a LLVM value.  The following properties are available:</p>
+<dl class="attribute">
+<dt id="llvmlite.binding.ValueRef.is_declaration">
+<code class="descname">is_declaration</code><a class="headerlink" href="#llvmlite.binding.ValueRef.is_declaration" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the global value is a mere declaration, False if it is
+defined in the given module.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ValueRef.linkage">
+<code class="descname">linkage</code><a class="headerlink" href="#llvmlite.binding.ValueRef.linkage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The linkage type (a <a class="reference internal" href="#llvmlite.binding.Linkage" title="llvmlite.binding.Linkage"><code class="xref py py-class docutils literal"><span class="pre">Linkage</span></code></a> instance) for this value.  This
+attribute is settable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ValueRef.module">
+<code class="descname">module</code><a class="headerlink" href="#llvmlite.binding.ValueRef.module" title="Permalink to this definition">¶</a></dt>
+<dd><p>The module (a <a class="reference internal" href="modules.html#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> instance) this value is defined in.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ValueRef.name">
+<code class="descname">name</code><a class="headerlink" href="#llvmlite.binding.ValueRef.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>This value&#8217;s name, as a string.  This attribute is settable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ValueRef.type">
+<code class="descname">type</code><a class="headerlink" href="#llvmlite.binding.ValueRef.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>This value&#8217;s LLVM type.  An opaque object is returned.  It can be used
+with e.g. <a class="reference internal" href="targets.html#llvmlite.binding.TargetData.get_abi_size" title="llvmlite.binding.TargetData.get_abi_size"><code class="xref py py-meth docutils literal"><span class="pre">TargetData.get_abi_size()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="engine.html" class="btn btn-neutral float-right" title="4.6. Execution engine" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="4.4. Modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

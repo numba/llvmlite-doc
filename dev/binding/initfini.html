@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.1. Initialization and finalization &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="4. llvmlite.binding – The LLVM binding layer" href="index.html"/>
+        <link rel="next" title="4.2. Dynamic libraries and symbols" href="dylib.html"/>
+        <link rel="prev" title="4. llvmlite.binding – The LLVM binding layer" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a> &raquo;</li>
+      
+    <li>4.1. Initialization and finalization</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/binding/initfini.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="initialization-and-finalization">
+<h1>4.1. Initialization and finalization<a class="headerlink" href="#initialization-and-finalization" title="Permalink to this headline">¶</a></h1>
+<p>These functions need only be called once per process invocation.</p>
+<dl class="function">
+<dt id="llvmlite.binding.initialize">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">initialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the LLVM core.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.initialize_native_target">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">initialize_native_target</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.initialize_native_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the native (host) target.  Calling this function once is
+necessary before doing any code generation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.initialize_native_asmprinter">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">initialize_native_asmprinter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.initialize_native_asmprinter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the native assembly printer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.shutdown">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shutdown the LLVM core.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dylib.html" class="btn btn-neutral float-right" title="4.2. Dynamic libraries and symbols" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="4. llvmlite.binding – The LLVM binding layer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

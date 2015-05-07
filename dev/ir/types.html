@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.1. Types &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="3. llvmlite.ir – The IR layer" href="index.html"/>
+        <link rel="next" title="3.2. Values" href="values.html"/>
+        <link rel="prev" title="3. llvmlite.ir – The IR layer" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. llvmlite.ir &#8211; The IR layer</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">3. llvmlite.ir &#8211; The IR layer</a> &raquo;</li>
+      
+    <li>3.1. Types</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ir/types.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="types">
+<h1>3.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<p>All <a class="reference internal" href="values.html#ir-values"><span>values</span></a> used in a LLVM module are explicitly typed.
+All types derive from a common base class <a class="reference internal" href="#llvmlite.ir.Type" title="llvmlite.ir.Type"><code class="xref py py-class docutils literal"><span class="pre">Type</span></code></a>.  Most of them can be
+instantiated directly.  Once instantiated, a type should be considered
+immutable.</p>
+<dl class="class">
+<dt id="llvmlite.ir.Type">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Type</code><a class="headerlink" href="#llvmlite.ir.Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for all types.  You should never instantiate it directly.
+Types have the following methods in common:</p>
+<dl class="method">
+<dt id="llvmlite.ir.Type.as_pointer">
+<code class="descname">as_pointer</code><span class="sig-paren">(</span><em>addrspace=0</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Type.as_pointer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference internal" href="#llvmlite.ir.PointerType" title="llvmlite.ir.PointerType"><code class="xref py py-class docutils literal"><span class="pre">PointerType</span></code></a> pointing to this type.  The optional
+<em>addrspace</em> integer allows you to choose a non-default address
+space (the meaning is platform-dependent).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.ir.Type.get_abi_size">
+<code class="descname">get_abi_size</code><span class="sig-paren">(</span><em>target_data</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Type.get_abi_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ABI size of this type, in bytes, according to the <em>target_data</em>
+(a <a class="reference internal" href="../binding/targets.html#llvmlite.binding.TargetData" title="llvmlite.binding.TargetData"><code class="xref py py-class docutils literal"><span class="pre">llvmlite.binding.TargetData</span></code></a> instance).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.ir.Type.get_abi_alignment">
+<code class="descname">get_abi_alignment</code><span class="sig-paren">(</span><em>target_data</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Type.get_abi_alignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ABI alignment of this type, in bytes, according to the
+<em>target_data</em> (a <a class="reference internal" href="../binding/targets.html#llvmlite.binding.TargetData" title="llvmlite.binding.TargetData"><code class="xref py py-class docutils literal"><span class="pre">llvmlite.binding.TargetData</span></code></a> instance).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="#llvmlite.ir.Type.get_abi_size" title="llvmlite.ir.Type.get_abi_size"><code class="xref py py-meth docutils literal"><span class="pre">get_abi_size()</span></code></a> and <a class="reference internal" href="#llvmlite.ir.Type.get_abi_alignment" title="llvmlite.ir.Type.get_abi_alignment"><code class="xref py py-meth docutils literal"><span class="pre">get_abi_alignment()</span></code></a> call into the
+LLVM C++ API to get the requested information.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="atomic-types">
+<h2>3.1.1. Atomic types<a class="headerlink" href="#atomic-types" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.ir.PointerType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">PointerType</code><span class="sig-paren">(</span><em>pointee</em>, <em>addrspace=0</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.PointerType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of pointers to another type.  <em>pointee</em> is the type pointed to.
+The optional <em>addrspace</em> integer allows you to choose a non-default
+address space (the meaning is platform-dependent).</p>
+<p>Pointer types exposes the following attributes:</p>
+<dl class="attribute">
+<dt id="llvmlite.ir.PointerType.addrspace">
+<code class="descname">addrspace</code><a class="headerlink" href="#llvmlite.ir.PointerType.addrspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The pointer&#8217;s address space number.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.PointerType.pointee">
+<code class="descname">pointee</code><a class="headerlink" href="#llvmlite.ir.PointerType.pointee" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type pointed to.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.IntType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">IntType</code><span class="sig-paren">(</span><em>bits</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.IntType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of integers.  <em>bits</em>, a Python integer, specifies the bitwidth
+of the integers having this type.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.FloatType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">FloatType</code><a class="headerlink" href="#llvmlite.ir.FloatType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of single-precision floating-point real numbers.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.DoubleType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">DoubleType</code><a class="headerlink" href="#llvmlite.ir.DoubleType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of double-precision floating-point real numbers.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.VoidType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">VoidType</code><a class="headerlink" href="#llvmlite.ir.VoidType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for void types; only used as the return type of a
+function without a return value.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="aggregate-types">
+<span id="id1"></span><h2>3.1.2. Aggregate types<a class="headerlink" href="#aggregate-types" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.ir.Aggregate">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Aggregate</code><a class="headerlink" href="#llvmlite.ir.Aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for aggregate types.  You should never instantiate it
+directly.  Aggregate types have the following attribute in common:</p>
+<dl class="attribute">
+<dt id="llvmlite.ir.Aggregate.elements">
+<code class="descname">elements</code><a class="headerlink" href="#llvmlite.ir.Aggregate.elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple-like immutable sequence of element types for this aggregate
+type.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.ArrayType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">ArrayType</code><span class="sig-paren">(</span><em>element</em>, <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.ArrayType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for array types.  <em>element</em> is the type of every element, <em>count</em>
+the number of elements (a Python integer).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.LiteralStructType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">LiteralStructType</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.LiteralStructType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for literal struct types.  <em>elements</em> is a sequence of element
+types for each member of the structure.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="other-types">
+<h2>3.1.3. Other types<a class="headerlink" href="#other-types" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.ir.FunctionType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">FunctionType</code><span class="sig-paren">(</span><em>return_type</em>, <em>args</em>, <em>var_arg=False</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.FunctionType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of a function.  <em>return_type</em> is the return type of the
+function.  <em>args</em> is a sequence describing the types of argument
+to the function.  If <em>var_arg</em> is true, the function takes a variable
+number of additional arguments (of unknown types) after the
+explicit <em>args</em>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">int32</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">IntType</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">fnty</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">(</span><span class="n">int32</span><span class="p">,</span> <span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">(),</span> <span class="n">ir</span><span class="o">.</span><span class="n">PointerType</span><span class="p">(</span><span class="n">int32</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>An equivalent C declaration would be:</p>
+<div class="highlight-C"><div class="highlight"><pre><span class="k">typedef</span> <span class="nf">int32_t</span> <span class="p">(</span><span class="o">*</span><span class="n">fnty</span><span class="p">)(</span><span class="kt">double</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="o">*</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.LabelType">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">LabelType</code><a class="headerlink" href="#llvmlite.ir.LabelType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type for <a class="reference internal" href="../glossary.html#term-label"><span class="xref std std-term">labels</span></a>.  You don&#8217;t need to instantiate this
+type.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.MetaData">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">MetaData</code><a class="headerlink" href="#llvmlite.ir.MetaData" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type for <a class="reference internal" href="../glossary.html#term-metadata"><span class="xref std std-term">metadata</span></a>.  You don&#8217;t need to instantiate this
+type.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="values.html" class="btn btn-neutral float-right" title="3.2. Values" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="3. llvmlite.ir – The IR layer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

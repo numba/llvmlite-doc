@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.6. Execution engine &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="4. llvmlite.binding – The LLVM binding layer" href="index.html"/>
+        <link rel="next" title="4.7. Optimization passes" href="passmanager.html"/>
+        <link rel="prev" title="4.5. Value references" href="values.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html">4.5. Value references</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a> &raquo;</li>
+      
+    <li>4.6. Execution engine</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/binding/engine.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="execution-engine">
+<h1>4.6. Execution engine<a class="headerlink" href="#execution-engine" title="Permalink to this headline">¶</a></h1>
+<p>The execution engine is where actual code generation and execution happens.
+In the currently supported LLVM version (LLVM 3.5), there are two
+execution engines: MCJIT and the &#8220;old JIT&#8221;.  Starting from LLVM 3.6,
+the &#8220;old JIT&#8221; is removed.  llvmlite exposes the same API for both, but
+they may have slightly different behaviour.</p>
+<div class="section" id="factory-functions">
+<h2>4.6.1. Factory functions<a class="headerlink" href="#factory-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="llvmlite.binding.create_mcjit_compiler">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">create_mcjit_compiler</code><span class="sig-paren">(</span><em>module</em>, <em>target_machine</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.create_mcjit_compiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a MCJIT-powered engine from the given <em>module</em> and
+<em>target_machine</em>.  A <a class="reference internal" href="#llvmlite.binding.ExecutionEngine" title="llvmlite.binding.ExecutionEngine"><code class="xref py py-class docutils literal"><span class="pre">ExecutionEngine</span></code></a> instance is returned.
+The <em>module</em> need not contain any code.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.create_jit_compiler_with_tm">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">create_jit_compiler_with_tm</code><span class="sig-paren">(</span><em>module</em>, <em>target_machine</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.create_jit_compiler_with_tm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a &#8220;old JIT&#8221;-powered engine from the given <em>module</em> and
+<em>target_machine</em>.  A <a class="reference internal" href="#llvmlite.binding.ExecutionEngine" title="llvmlite.binding.ExecutionEngine"><code class="xref py py-class docutils literal"><span class="pre">ExecutionEngine</span></code></a> instance is returned.
+The <em>module</em> need not contain any code.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="the-executionengine-class">
+<h2>4.6.2. The ExecutionEngine class<a class="headerlink" href="#the-executionengine-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.binding.ExecutionEngine">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">ExecutionEngine</code><a class="headerlink" href="#llvmlite.binding.ExecutionEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper around a LLVM execution engine.  The following methods and
+properties are available:</p>
+<dl class="method">
+<dt id="llvmlite.binding.ExecutionEngine.add_module">
+<code class="descname">add_module</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ExecutionEngine.add_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the <em>module</em> (a <a class="reference internal" href="modules.html#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> instance) for code generation.
+When this method is called, ownership of the module is transferred
+to the execution engine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ExecutionEngine.finalize_object">
+<code class="descname">finalize_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ExecutionEngine.finalize_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make sure all modules owned by the execution engine are fully processed
+and &#8220;usable&#8221; for execution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ExecutionEngine.get_pointer_to_global">
+<code class="descname">get_pointer_to_global</code><span class="sig-paren">(</span><em>gv</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ExecutionEngine.get_pointer_to_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the address of the global value <em>gv</em>, as an integer.  The
+value should have been looked up on one of the modules owned by
+the execution engine.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This method may implicitly generate code for the object being
+looked up.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ExecutionEngine.remove_module">
+<code class="descname">remove_module</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ExecutionEngine.remove_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the <em>module</em> (a <a class="reference internal" href="modules.html#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> instance) from the modules
+owned by the execution engine.  This allows releasing the resources
+owned by the module without destroying the execution engine.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ExecutionEngine.target_data">
+<code class="descname">target_data</code><a class="headerlink" href="#llvmlite.binding.ExecutionEngine.target_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="targets.html#llvmlite.binding.TargetData" title="llvmlite.binding.TargetData"><code class="xref py py-class docutils literal"><span class="pre">TargetData</span></code></a> used by the execution engine.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="passmanager.html" class="btn btn-neutral float-right" title="4.7. Optimization passes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="values.html" class="btn btn-neutral" title="4.5. Value references" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

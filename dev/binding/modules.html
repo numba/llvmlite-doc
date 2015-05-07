@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.4. Modules &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="4. llvmlite.binding – The LLVM binding layer" href="index.html"/>
+        <link rel="next" title="4.5. Value references" href="values.html"/>
+        <link rel="prev" title="4.3. Target information" href="targets.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="targets.html">4.3. Target information</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a> &raquo;</li>
+      
+    <li>4.4. Modules</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/binding/modules.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="modules">
+<h1>4.4. Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<p>While they conceptually represent the same thing, modules in the
+<a class="reference internal" href="../ir/index.html#ir-layer"><span>IR layer</span></a> and modules in the <a class="reference internal" href="index.html#binding-layer"><span>binding layer</span></a> don&#8217;t have the same roles and don&#8217;t expose the same API.</p>
+<p>While modules in the IR layer allow to build and group functions together,
+modules in the binding layer give access to compilation, linking and
+execution of code.  To distinguish between the two, the module class
+in the binding layer is called <a class="reference internal" href="#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> as opposed to
+<a class="reference internal" href="../ir/modules.html#llvmlite.ir.Module" title="llvmlite.ir.Module"><code class="xref py py-class docutils literal"><span class="pre">llvmlite.ir.Module</span></code></a>.</p>
+<p>To go from one realm to the other, you must use the <a class="reference internal" href="#llvmlite.binding.parse_assembly" title="llvmlite.binding.parse_assembly"><code class="xref py py-func docutils literal"><span class="pre">parse_assembly()</span></code></a>
+function.</p>
+<div class="section" id="factory-functions">
+<h2>4.4.1. Factory functions<a class="headerlink" href="#factory-functions" title="Permalink to this headline">¶</a></h2>
+<p>A module can be created from the following factory functions:</p>
+<dl class="function">
+<dt id="llvmlite.binding.parse_assembly">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">parse_assembly</code><span class="sig-paren">(</span><em>llvmir</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.parse_assembly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the given <em>llvmir</em>, a string containing some LLVM IR code.  If
+parsing is successful, a new <a class="reference internal" href="#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a> instance is returned.</p>
+<p><em>llvmir</em> can be obtained, for example, by calling <code class="docutils literal"><span class="pre">str()</span></code> on a
+<a class="reference internal" href="../ir/modules.html#llvmlite.ir.Module" title="llvmlite.ir.Module"><code class="xref py py-class docutils literal"><span class="pre">llvmlite.ir.Module</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="llvmlite.binding.parse_bitcode">
+<code class="descclassname">llvmlite.binding.</code><code class="descname">parse_bitcode</code><span class="sig-paren">(</span><em>bitcode</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.parse_bitcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse the given <em>bitcode</em>, a bytestring containing the LLVM bitcode
+of a module.  If parsing is successful, a new <a class="reference internal" href="#llvmlite.binding.ModuleRef" title="llvmlite.binding.ModuleRef"><code class="xref py py-class docutils literal"><span class="pre">ModuleRef</span></code></a>
+instance is returned.</p>
+<p><em>bitcode</em> can be obtained, for example, by calling
+<a class="reference internal" href="#llvmlite.binding.ModuleRef.as_bitcode" title="llvmlite.binding.ModuleRef.as_bitcode"><code class="xref py py-meth docutils literal"><span class="pre">ModuleRef.as_bitcode()</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="the-moduleref-class">
+<h2>4.4.2. The ModuleRef class<a class="headerlink" href="#the-moduleref-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="llvmlite.binding.ModuleRef">
+<em class="property">class </em><code class="descclassname">llvmlite.binding.</code><code class="descname">ModuleRef</code><a class="headerlink" href="#llvmlite.binding.ModuleRef" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper around a LLVM module object.  The following methods and
+properties are available:</p>
+<dl class="method">
+<dt id="llvmlite.binding.ModuleRef.as_bitcode">
+<code class="descname">as_bitcode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ModuleRef.as_bitcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the bitcode of this module as a bytes object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ModuleRef.get_function">
+<code class="descname">get_function</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ModuleRef.get_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the function with the given <em>name</em> in this module.  If found,
+a <a class="reference internal" href="values.html#llvmlite.binding.ValueRef" title="llvmlite.binding.ValueRef"><code class="xref py py-class docutils literal"><span class="pre">ValueRef</span></code></a> is returned.  Otherwise, <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NameError" title="(in Python v3.4)"><code class="xref py py-exc docutils literal"><span class="pre">NameError</span></code></a>
+is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ModuleRef.get_global_variable">
+<code class="descname">get_global_variable</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ModuleRef.get_global_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the global variable with the given <em>name</em> in this module.
+If found, a <a class="reference internal" href="values.html#llvmlite.binding.ValueRef" title="llvmlite.binding.ValueRef"><code class="xref py py-class docutils literal"><span class="pre">ValueRef</span></code></a> is returned.  Otherwise, <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NameError" title="(in Python v3.4)"><code class="xref py py-exc docutils literal"><span class="pre">NameError</span></code></a>
+is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ModuleRef.link_in">
+<code class="descname">link_in</code><span class="sig-paren">(</span><em>other</em>, <em>preserve=False</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ModuleRef.link_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link the <em>other</em> module into this module, resolving references
+wherever possible.  If <em>preserve</em> is true, the other module is first
+copied in order to preserve its contents; if <em>preserve</em> is false,
+the other module is not usable after this call anymore.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.binding.ModuleRef.verify">
+<code class="descname">verify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.binding.ModuleRef.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify the module&#8217;s correctness.  <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.4)"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code></a> is raised on
+error.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ModuleRef.data_layout">
+<code class="descname">data_layout</code><a class="headerlink" href="#llvmlite.binding.ModuleRef.data_layout" title="Permalink to this definition">¶</a></dt>
+<dd><p>The data layout string for this module.  This attribute is settable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ModuleRef.functions">
+<code class="descname">functions</code><a class="headerlink" href="#llvmlite.binding.ModuleRef.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterator over the functions defined in this module.
+Each function is a <a class="reference internal" href="values.html#llvmlite.binding.ValueRef" title="llvmlite.binding.ValueRef"><code class="xref py py-class docutils literal"><span class="pre">ValueRef</span></code></a> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ModuleRef.global_variables">
+<code class="descname">global_variables</code><a class="headerlink" href="#llvmlite.binding.ModuleRef.global_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>An iterator over the global variables defined in this module.
+Each global variable is a <a class="reference internal" href="values.html#llvmlite.binding.ValueRef" title="llvmlite.binding.ValueRef"><code class="xref py py-class docutils literal"><span class="pre">ValueRef</span></code></a> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.binding.ModuleRef.triple">
+<code class="descname">triple</code><a class="headerlink" href="#llvmlite.binding.ModuleRef.triple" title="Permalink to this definition">¶</a></dt>
+<dd><p>The platform &#8220;triple&#8221; string for this module.  This attribute is settable.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="values.html" class="btn btn-neutral float-right" title="4.5. Value references" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="targets.html" class="btn btn-neutral" title="4.3. Target information" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

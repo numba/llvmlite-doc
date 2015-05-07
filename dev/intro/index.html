@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Introduction &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="next" title="2. Installing" href="../install/index.html"/>
+        <link rel="prev" title="llvmlite – a light-weight Python binding to LLVM" href="../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ir/index.html">3. llvmlite.ir &#8211; The IR layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ir/types.html">3.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/values.html">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ir/examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/intro/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>1.1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>llvmlite is born of the desire to have a new Python binding to LLVM for
+use in <a class="reference external" href="http://numba.pydata.org/">Numba</a>.  Numba used to rely on <a class="reference external" href="http://www.llvmpy.org/">llvmpy</a>, but llvmpy became harder
+and harder to maintain, because of its cumbersome architecture and also
+because the C++11 requirement of recent LLVM versions don&#8217;t go well with
+the compiler and runtime ABI requirements of some Python versions
+(especially under Windows).</p>
+<p>Moreover, llvmpy proved to be responsible for a sizable chunk of Numba&#8217;s
+compilation times, because of its inefficient layering and object
+encapsulation.  Fixing this issue inside the llvmpy codebase seemed
+a time-consuming and uncertain task.</p>
+<p>Therefore, the Numba developers decided to start a new binding from scratch,
+with an entire different architecture, centered around the specific
+requirements of a JIT compiler.</p>
+</div>
+<div class="section" id="philosophy">
+<h2>1.2. Philosophy<a class="headerlink" href="#philosophy" title="Permalink to this headline">¶</a></h2>
+<p>While <a class="reference external" href="http://www.llvmpy.org/">llvmpy</a> exposed large parts of the LLVM C++ API for direct calls
+into the LLVM library, llvmlite takes an entirely different approach.
+llvmlite starts from the needs of a JIT compiler and splits them into
+two decoupled tasks:</p>
+<ol class="arabic simple">
+<li>Construction of a <a class="reference internal" href="../glossary.html#term-module"><span class="xref std std-term">module</span></a>, function by function,
+<a class="reference internal" href="../glossary.html#term-instruction"><span class="xref std std-term">instruction</span></a> by instruction</li>
+<li>Compilation and optimization of the module into machine code</li>
+</ol>
+<p>The construction of a LLVM module doesn&#8217;t call the LLVM C++ API; rather,
+it constructs the LLVM <a class="reference internal" href="../glossary.html#term-intermediate-representation"><span class="xref std std-term">Intermediate Representation</span></a> in pure Python.
+This is the part of the <a class="reference internal" href="../ir/index.html#ir-layer"><span>IR layer</span></a>.</p>
+<p>The compilation of a LLVM module takes the IR in textual form and feeds
+it into LLVM&#8217;s parsing API.  It then returns a thin wrapper around
+LLVM&#8217;s C++ module object.  This is the part of the
+<a class="reference internal" href="../binding/index.html#binding-layer"><span>binding layer</span></a>.</p>
+<p>Once parsed, the module&#8217;s source code cannot be modified anymore; this
+is where llvmlite loses in flexibility compared to the direct mapping
+of C++ APIs into Python that was provided by llvmpy.  The saving in
+maintenance effort, however, is large.</p>
+</div>
+<div class="section" id="llvm-compatibility">
+<h2>1.3. LLVM compatibility<a class="headerlink" href="#llvm-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>Despite minimizing the API surface with LLVM, llvmlite is impacted
+by changes to LLVM&#8217;s C++ API (which can occur at every feature release).
+Therefore, each llvmlite version is targetted to a specific LLVM feature
+version.  It should work accross all given bugfix releases of that version
+(for example, llvmlite 0.4.0 would work with LLVM 3.5.0 and 3.5.1, but
+with neither LLVM 3.4.0 nor 3.6.0).</p>
+<p>Which LLVM version is supported is driven by <a class="reference external" href="http://numba.pydata.org/">Numba</a>&#8216;s requirements.</p>
+</div>
+<div class="section" id="api-stability">
+<h2>1.4. API stability<a class="headerlink" href="#api-stability" title="Permalink to this headline">¶</a></h2>
+<p>At this time, we reserve ourselves the possibility to slightly break the
+llvmlite API at each release.  This is necessary because of changes in
+LLVM behaviour (for example differences in the IR accross versions), and
+because llvmlite as a young library still has room for improvement or
+fixes to the existing APIs.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../install/index.html" class="btn btn-neutral float-right" title="2. Installing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="llvmlite – a light-weight Python binding to LLVM" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

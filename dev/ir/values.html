@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2. Values &mdash; llvmlite 0.5.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="llvmlite 0.5.0 documentation" href="../index.html"/>
+        <link rel="up" title="3. llvmlite.ir – The IR layer" href="index.html"/>
+        <link rel="next" title="3.3. Modules" href="modules.html"/>
+        <link rel="prev" title="3.1. Types" href="types.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../index.html" class="icon icon-home"> llvmlite
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#overview">1.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#philosophy">1.2. Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#llvm-compatibility">1.3. LLVM compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#api-stability">1.4. API stability</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">2. Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#pre-built-binaries">2.1. Pre-built binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html#building-manually">2.2. Building manually</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. llvmlite.ir &#8211; The IR layer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types.html">3.1. Types</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.2. Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html">3.3. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builder.html">3.4. IR builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">3.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../binding/index.html">4. llvmlite.binding &#8211; The LLVM binding layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../binding/initfini.html">4.1. Initialization and finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/dylib.html">4.2. Dynamic libraries and symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/targets.html">4.3. Target information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/modules.html">4.4. Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/values.html">4.5. Value references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/engine.html">4.6. Execution engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/passmanager.html">4.7. Optimization passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../binding/examples.html">4.8. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">5. Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#communication">5.1. Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#pull-requests">5.2. Pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#development-rules">5.3. Development rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer/index.html#documentation">5.4. Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">6. Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">llvmlite</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">3. llvmlite.ir &#8211; The IR layer</a> &raquo;</li>
+      
+    <li>3.2. Values</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/ir/values.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="values">
+<span id="ir-values"></span><h1>3.2. Values<a class="headerlink" href="#values" title="Permalink to this headline">¶</a></h1>
+<p>Values are what a <a class="reference internal" href="../glossary.html#term-module"><span class="xref std std-term">module</span></a> mostly consists of.</p>
+<dl class="data">
+<dt id="llvmlite.ir.Undefined">
+<code class="descclassname">llvmlite.ir.</code><code class="descname">Undefined</code><a class="headerlink" href="#llvmlite.ir.Undefined" title="Permalink to this definition">¶</a></dt>
+<dd><p>An undefined value (mapping to LLVM&#8217;s &#8220;undef&#8221;).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.Constant">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Constant</code><span class="sig-paren">(</span><em>typ</em>, <em>constant</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>A literal value.  <em>typ</em> is the type of the represented value
+(a <a class="reference internal" href="types.html#llvmlite.ir.Type" title="llvmlite.ir.Type"><code class="xref py py-class docutils literal"><span class="pre">Type</span></code></a> instance).  <em>constant</em> is the Python
+value to be represented.  Which Python types are allowed for <em>constant</em>
+depends on <em>typ</em>:</p>
+<ul class="simple">
+<li>All types accept <a class="reference internal" href="#llvmlite.ir.Undefined" title="llvmlite.ir.Undefined"><code class="xref py py-data docutils literal"><span class="pre">Undefined</span></code></a>, and turn it into LLVM&#8217;s &#8220;undef&#8221;.</li>
+<li>All types accept None, and turn it into LLVM&#8217;s &#8220;zeroinitializer&#8221;.</li>
+<li><a class="reference internal" href="types.html#llvmlite.ir.IntType" title="llvmlite.ir.IntType"><code class="xref py py-class docutils literal"><span class="pre">IntType</span></code></a> accepts any Python integer or boolean.</li>
+<li><a class="reference internal" href="types.html#llvmlite.ir.FloatType" title="llvmlite.ir.FloatType"><code class="xref py py-class docutils literal"><span class="pre">FloatType</span></code></a> and <a class="reference internal" href="types.html#llvmlite.ir.DoubleType" title="llvmlite.ir.DoubleType"><code class="xref py py-class docutils literal"><span class="pre">DoubleType</span></code></a> accept any Python real number.</li>
+<li>Aggregate types (i.e. array and structure types) accept a sequence of
+Python values corresponding to the type&#8217;s element types.</li>
+<li>In addition, <a class="reference internal" href="types.html#llvmlite.ir.ArrayType" title="llvmlite.ir.ArrayType"><code class="xref py py-class docutils literal"><span class="pre">ArrayType</span></code></a> also accepts a single <a class="reference external" href="https://docs.python.org/3/library/functions.html#bytearray" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">bytearray</span></code></a>
+instance to initialize the array from a string of bytes.  This is
+useful for character constants.</li>
+</ul>
+<dl class="classmethod">
+<dt id="llvmlite.ir.Constant.literal_struct">
+<em class="property">classmethod </em><code class="descname">literal_struct</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Constant.literal_struct" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alternate constructor for constant structs.  <em>elements</em> is a
+sequence of values (<a class="reference internal" href="#llvmlite.ir.Constant" title="llvmlite.ir.Constant"><code class="xref py py-class docutils literal"><span class="pre">Constant</span></code></a> or otherwise).  A constant
+struct containing the <em>elems</em> in order is returned</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You cannot define constant functions.  Use a <a class="reference internal" href="../glossary.html#term-function-declaration"><span class="xref std std-term">function declaration</span></a>
+instead.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.Value">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Value</code><a class="headerlink" href="#llvmlite.ir.Value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for non-literal values.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.MetaDataString">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">MetaDataString</code><span class="sig-paren">(</span><em>module</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.MetaDataString" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string literal for use in <a class="reference internal" href="../glossary.html#term-metadata"><span class="xref std std-term">metadata</span></a>.  <em>module</em> is the module
+the metadata belongs to.  <em>value</em> is a Python string.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.MDValue">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">MDValue</code><a class="headerlink" href="#llvmlite.ir.MDValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="../glossary.html#term-metadata"><span class="xref std std-term">metadata</span></a> node.  To create an instance, call
+<a class="reference internal" href="modules.html#llvmlite.ir.Module.add_metadata" title="llvmlite.ir.Module.add_metadata"><code class="xref py py-meth docutils literal"><span class="pre">Module.add_metadata()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.NamedMetaData">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">NamedMetaData</code><a class="headerlink" href="#llvmlite.ir.NamedMetaData" title="Permalink to this definition">¶</a></dt>
+<dd><p>A named metadata.  To create an instance, call
+<a class="reference internal" href="modules.html#llvmlite.ir.Module.add_named_metadata" title="llvmlite.ir.Module.add_named_metadata"><code class="xref py py-meth docutils literal"><span class="pre">Module.add_named_metadata()</span></code></a>.  Named metadata has
+the following method:</p>
+<dl class="method">
+<dt id="llvmlite.ir.NamedMetaData.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>md</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.NamedMetaData.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append the given piece of metadata to the collection of operands
+referred to by the NamedMetaData.  <em>md</em> can be either a
+<a class="reference internal" href="#llvmlite.ir.MetaDataString" title="llvmlite.ir.MetaDataString"><code class="xref py py-class docutils literal"><span class="pre">MetaDataString</span></code></a> or a <a class="reference internal" href="#llvmlite.ir.MDValue" title="llvmlite.ir.MDValue"><code class="xref py py-class docutils literal"><span class="pre">MDValue</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.Argument">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Argument</code><a class="headerlink" href="#llvmlite.ir.Argument" title="Permalink to this definition">¶</a></dt>
+<dd><p>One of a function&#8217;s arguments.  Arguments have the following method:</p>
+<dl class="method">
+<dt id="llvmlite.ir.Argument.add_attribute">
+<code class="descname">add_attribute</code><span class="sig-paren">(</span><em>attr</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Argument.add_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an argument attribute to this argument.  <em>attr</em> is a Python string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.Block">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Block</code><a class="headerlink" href="#llvmlite.ir.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="../glossary.html#term-basic-block"><span class="xref std std-term">basic block</span></a>.  You shouldn&#8217;t instantiate or mutate this type
+directly;  instead, call the helper methods on <a class="reference internal" href="#llvmlite.ir.Function" title="llvmlite.ir.Function"><code class="xref py py-class docutils literal"><span class="pre">Function</span></code></a>
+and <a class="reference internal" href="builder.html#llvmlite.ir.IRBuilder" title="llvmlite.ir.IRBuilder"><code class="xref py py-class docutils literal"><span class="pre">IRBuilder</span></code></a>.</p>
+<p>Basic blocks have the following methods and attributes:</p>
+<dl class="method">
+<dt id="llvmlite.ir.Block.replace">
+<code class="descname">replace</code><span class="sig-paren">(</span><em>old</em>, <em>new</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Block.replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace the instruction <em>old</em> with the other instruction <em>new</em>
+in this block&#8217;s list of instructions.  All uses of <em>old</em> in the whole
+function are also patched.  <em>old</em> and <em>new</em> are <a class="reference internal" href="#llvmlite.ir.Instruction" title="llvmlite.ir.Instruction"><code class="xref py py-class docutils literal"><span class="pre">Instruction</span></code></a>
+objects.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Block.function">
+<code class="descname">function</code><a class="headerlink" href="#llvmlite.ir.Block.function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function this block is defined in.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Block.is_terminated">
+<code class="descname">is_terminated</code><a class="headerlink" href="#llvmlite.ir.Block.is_terminated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this block ends with a <a class="reference internal" href="../glossary.html#term-terminator-instruction"><span class="xref std std-term">terminator instruction</span></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Block.terminator">
+<code class="descname">terminator</code><a class="headerlink" href="#llvmlite.ir.Block.terminator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The block&#8217;s <a class="reference internal" href="../glossary.html#term-terminator-instruction"><span class="xref std std-term">terminator instruction</span></a>, if any.  Otherwise None.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="global-values">
+<h2>3.2.1. Global values<a class="headerlink" href="#global-values" title="Permalink to this headline">¶</a></h2>
+<p>Global values are values accessible using a module-wide name.</p>
+<dl class="class">
+<dt id="llvmlite.ir.GlobalValue">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">GlobalValue</code><a class="headerlink" href="#llvmlite.ir.GlobalValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for global values.  Global values have the following
+writable attribute:</p>
+<dl class="attribute">
+<dt id="llvmlite.ir.GlobalValue.linkage">
+<code class="descname">linkage</code><a class="headerlink" href="#llvmlite.ir.GlobalValue.linkage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Python string describing the linkage behaviour of the global value
+(e.g. whether it is visible from other modules).  Default is the
+empty string, meaning &#8220;external&#8221;.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.GlobalVariable">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">GlobalVariable</code><span class="sig-paren">(</span><em>module</em>, <em>typ</em>, <em>name</em>, <em>addrspace=0</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.GlobalVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>A global variable.  <em>module</em> is where the variable will be defined.
+<em>typ</em> is the variable&#8217;s type.  <em>name</em> is the variable&#8217;s name
+(a Python string).  <em>addrspace</em> is an optional address space to
+store the variable in.</p>
+<p><em>typ</em> cannot be a function type.  To declare a global function,
+use <a class="reference internal" href="#llvmlite.ir.Function" title="llvmlite.ir.Function"><code class="xref py py-class docutils literal"><span class="pre">Function</span></code></a>.</p>
+<p>The returned Value&#8217;s actual type is a pointer to <em>typ</em>. To read
+(respectively write) the variable&#8217;s contents, you need to
+<a class="reference internal" href="builder.html#llvmlite.ir.IRBuilder.load" title="llvmlite.ir.IRBuilder.load"><code class="xref py py-meth docutils literal"><span class="pre">load()</span></code></a> from (respectively <a class="reference internal" href="builder.html#llvmlite.ir.IRBuilder.store" title="llvmlite.ir.IRBuilder.store"><code class="xref py py-meth docutils literal"><span class="pre">store()</span></code></a> to)
+the returned Value.</p>
+<p>Global variables have the following writable attributes:</p>
+<dl class="attribute">
+<dt id="llvmlite.ir.GlobalVariable.global_constant">
+<code class="descname">global_constant</code><a class="headerlink" href="#llvmlite.ir.GlobalVariable.global_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, the variable is declared a constant, i.e. its contents
+cannot be ever modified.  Default is False.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.GlobalVariable.initializer">
+<code class="descname">initializer</code><a class="headerlink" href="#llvmlite.ir.GlobalVariable.initializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The variable&#8217;s initialization value (probably a <a class="reference internal" href="#llvmlite.ir.Constant" title="llvmlite.ir.Constant"><code class="xref py py-class docutils literal"><span class="pre">Constant</span></code></a>
+of type <em>typ</em>).  Default is None, meaning the variable is uninitialized.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.Function">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Function</code><span class="sig-paren">(</span><em>module</em>, <em>typ</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Function" title="Permalink to this definition">¶</a></dt>
+<dd><p>A global function.  <em>module</em> is where the function will be defined.
+<em>typ</em> is the function&#8217;s type (a <a class="reference internal" href="types.html#llvmlite.ir.FunctionType" title="llvmlite.ir.FunctionType"><code class="xref py py-class docutils literal"><span class="pre">FunctionType</span></code></a> instance).
+<em>name</em> is the function&#8217;s name (a Python string).</p>
+<p>If a global function has any basic blocks, it is a <a class="reference internal" href="../glossary.html#term-function-definition"><span class="xref std std-term">function definition</span></a>.
+Otherwise, it is a <a class="reference internal" href="../glossary.html#term-function-declaration"><span class="xref std std-term">function declaration</span></a>.</p>
+<p>Functions have the following methods and attributes:</p>
+<dl class="method">
+<dt id="llvmlite.ir.Function.append_basic_block">
+<code class="descname">append_basic_block</code><span class="sig-paren">(</span><em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Function.append_basic_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a <a class="reference internal" href="../glossary.html#term-basic-block"><span class="xref std std-term">basic block</span></a> to this function&#8217;s body.  If <em>name</em> is
+non empty, it names the block&#8217;s entry <a class="reference internal" href="../glossary.html#term-label"><span class="xref std std-term">label</span></a>.</p>
+<p>A new <a class="reference internal" href="#llvmlite.ir.Block" title="llvmlite.ir.Block"><code class="xref py py-class docutils literal"><span class="pre">Block</span></code></a> is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="llvmlite.ir.Function.insert_basic_block">
+<code class="descname">insert_basic_block</code><span class="sig-paren">(</span><em>before</em>, <em>name=''</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Function.insert_basic_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similar to <a class="reference internal" href="#llvmlite.ir.Function.append_basic_block" title="llvmlite.ir.Function.append_basic_block"><code class="xref py py-meth docutils literal"><span class="pre">append_basic_block()</span></code></a>, but inserts it before the basic
+block <em>before</em> in the function&#8217;s list of basic blocks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Function.args">
+<code class="descname">args</code><a class="headerlink" href="#llvmlite.ir.Function.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function&#8217;s arguments as a tuple of <a class="reference internal" href="#llvmlite.ir.Argument" title="llvmlite.ir.Argument"><code class="xref py py-class docutils literal"><span class="pre">Argument</span></code></a> instances.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Function.attributes">
+<code class="descname">attributes</code><a class="headerlink" href="#llvmlite.ir.Function.attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A set of function attributes.  Each optional attribute is a Python
+string.  By default this is empty.  Use the <code class="docutils literal"><span class="pre">add()</span></code> method to
+add an attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fnty</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">(),</span> <span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">(),))</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">fnty</span><span class="p">,</span> <span class="s">&quot;sqrt&quot;</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;alwaysinline&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Function.calling_convention">
+<code class="descname">calling_convention</code><a class="headerlink" href="#llvmlite.ir.Function.calling_convention" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function&#8217;s calling convention (a Python string).  Default is
+the empty string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Function.is_declaration">
+<code class="descname">is_declaration</code><a class="headerlink" href="#llvmlite.ir.Function.is_declaration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the global function is a declaration (True) or a definition
+(False).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="instructions">
+<h2>3.2.2. Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>Every <a class="reference internal" href="../glossary.html#term-instruction"><span class="xref std std-term">instruction</span></a> is also a value: it has a name (the recipient&#8217;s
+name), a well-defined type, and can be used as an operand in other
+instructions or in literals.</p>
+<p>Instruction types should usually not be instantiated directly.  Instead,
+use the helper methods on the <a class="reference internal" href="builder.html#llvmlite.ir.IRBuilder" title="llvmlite.ir.IRBuilder"><code class="xref py py-class docutils literal"><span class="pre">IRBuilder</span></code></a> class.</p>
+<dl class="class">
+<dt id="llvmlite.ir.Instruction">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">Instruction</code><a class="headerlink" href="#llvmlite.ir.Instruction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for all instructions.  Instructions have the following
+method and attributes:</p>
+<dl class="method">
+<dt id="llvmlite.ir.Instruction.set_metadata">
+<code class="descname">set_metadata</code><span class="sig-paren">(</span><em>name</em>, <em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.Instruction.set_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an instruction-specific metadata named <em>name</em> pointing to the
+given metadata <em>node</em> (a <a class="reference internal" href="#llvmlite.ir.MDValue" title="llvmlite.ir.MDValue"><code class="xref py py-class docutils literal"><span class="pre">MDValue</span></code></a>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Instruction.function">
+<code class="descname">function</code><a class="headerlink" href="#llvmlite.ir.Instruction.function" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function this instruction is part of.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="llvmlite.ir.Instruction.module">
+<code class="descname">module</code><a class="headerlink" href="#llvmlite.ir.Instruction.module" title="Permalink to this definition">¶</a></dt>
+<dd><p>The module this instruction&#8217;s function is defined in.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.PredictableInstr">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">PredictableInstr</code><a class="headerlink" href="#llvmlite.ir.PredictableInstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class of instructions for which we can specificy the probabilities
+of different outcomes (e.g. a switch or a conditional branch).  Predictable
+instructions have the following method:</p>
+<dl class="method">
+<dt id="llvmlite.ir.PredictableInstr.set_weights">
+<code class="descname">set_weights</code><span class="sig-paren">(</span><em>weights</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.PredictableInstr.set_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the weights of the instruction&#8217;s possible outcomes.
+<em>weights</em> is a sequence of positive integers, each corresponding
+to a different outcome and specifying its relative probability
+compared to other outcomes (the greater, the likelier).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.SwitchInstr">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">SwitchInstr</code><a class="headerlink" href="#llvmlite.ir.SwitchInstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A switch statement.  Switch statements have the following method:</p>
+<dl class="method">
+<dt id="llvmlite.ir.SwitchInstr.add_case">
+<code class="descname">add_case</code><span class="sig-paren">(</span><em>val</em>, <em>block</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.SwitchInstr.add_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a case to the switch statements.  <em>val</em> should be a <a class="reference internal" href="#llvmlite.ir.Constant" title="llvmlite.ir.Constant"><code class="xref py py-class docutils literal"><span class="pre">Constant</span></code></a>
+or a Python value compatible with the switch statement&#8217;s operand type.
+<em>block</em> is a <a class="reference internal" href="#llvmlite.ir.Block" title="llvmlite.ir.Block"><code class="xref py py-class docutils literal"><span class="pre">Block</span></code></a> to jump to if, and only if, <em>val</em> and
+the switch operand compare equal.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="llvmlite.ir.PhiInstr">
+<em class="property">class </em><code class="descclassname">llvmlite.ir.</code><code class="descname">PhiInstr</code><a class="headerlink" href="#llvmlite.ir.PhiInstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A phi instruction.  Phi instructions have the following method:</p>
+<dl class="method">
+<dt id="llvmlite.ir.PhiInstr.add_incoming">
+<code class="descname">add_incoming</code><span class="sig-paren">(</span><em>value</em>, <em>block</em><span class="sig-paren">)</span><a class="headerlink" href="#llvmlite.ir.PhiInstr.add_incoming" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an incoming edge.  Whenever transfer is controlled from <em>block</em>
+(a <a class="reference internal" href="#llvmlite.ir.Block" title="llvmlite.ir.Block"><code class="xref py py-class docutils literal"><span class="pre">Block</span></code></a>), the phi instruction takes the given <em>value</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="3.3. Modules" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="types.html" class="btn btn-neutral" title="3.1. Types" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Continuum Analytics.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
